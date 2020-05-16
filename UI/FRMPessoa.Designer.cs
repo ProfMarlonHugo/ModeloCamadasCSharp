@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.TXTNome = new System.Windows.Forms.TextBox();
-            this.TXTSexo = new System.Windows.Forms.TextBox();
             this.DTPNascimento = new System.Windows.Forms.DateTimePicker();
             this.TXTEmail = new System.Windows.Forms.TextBox();
             this.TXTCPF = new System.Windows.Forms.TextBox();
@@ -39,6 +38,8 @@
             this.LBLEmail = new System.Windows.Forms.Label();
             this.LBLCpf = new System.Windows.Forms.Label();
             this.BTNInserir = new System.Windows.Forms.Button();
+            this.CB_Sexo = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // TXTNome
@@ -47,13 +48,6 @@
             this.TXTNome.Name = "TXTNome";
             this.TXTNome.Size = new System.Drawing.Size(105, 20);
             this.TXTNome.TabIndex = 0;
-            // 
-            // TXTSexo
-            // 
-            this.TXTSexo.Location = new System.Drawing.Point(83, 89);
-            this.TXTSexo.Name = "TXTSexo";
-            this.TXTSexo.Size = new System.Drawing.Size(105, 20);
-            this.TXTSexo.TabIndex = 1;
             // 
             // DTPNascimento
             // 
@@ -131,11 +125,31 @@
             this.BTNInserir.UseVisualStyleBackColor = true;
             this.BTNInserir.Click += new System.EventHandler(this.BTNInserir_Click);
             // 
+            // CB_Sexo
+            // 
+            this.CB_Sexo.FormattingEnabled = true;
+            this.CB_Sexo.Location = new System.Drawing.Point(83, 89);
+            this.CB_Sexo.Name = "CB_Sexo";
+            this.CB_Sexo.Size = new System.Drawing.Size(105, 21);
+            this.CB_Sexo.TabIndex = 11;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(93, 180);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Buscar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FRMPessoa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(411, 215);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.CB_Sexo);
             this.Controls.Add(this.BTNInserir);
             this.Controls.Add(this.LBLCpf);
             this.Controls.Add(this.LBLEmail);
@@ -145,10 +159,10 @@
             this.Controls.Add(this.TXTCPF);
             this.Controls.Add(this.TXTEmail);
             this.Controls.Add(this.DTPNascimento);
-            this.Controls.Add(this.TXTSexo);
             this.Controls.Add(this.TXTNome);
             this.Name = "FRMPessoa";
             this.Text = "Cadasrtro de Pessoa";
+            this.Load += new System.EventHandler(this.FRMPessoa_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -157,7 +171,6 @@
         #endregion
 
         private System.Windows.Forms.TextBox TXTNome;
-        private System.Windows.Forms.TextBox TXTSexo;
         private System.Windows.Forms.DateTimePicker DTPNascimento;
         private System.Windows.Forms.TextBox TXTEmail;
         private System.Windows.Forms.TextBox TXTCPF;
@@ -167,6 +180,8 @@
         private System.Windows.Forms.Label LBLEmail;
         private System.Windows.Forms.Label LBLCpf;
         private System.Windows.Forms.Button BTNInserir;
+        private System.Windows.Forms.ComboBox CB_Sexo;
+        private System.Windows.Forms.Button button1;
     }
 }
 
