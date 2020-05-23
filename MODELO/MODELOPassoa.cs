@@ -9,7 +9,7 @@ namespace MODELO
     public class MODELOPassoa
     {
         /*Atributos da tabela Pessoa*/
-        private int id;
+        private Int32 id;
         private string nome;
         private DateTime dataNascimento;
         private string sexo;
