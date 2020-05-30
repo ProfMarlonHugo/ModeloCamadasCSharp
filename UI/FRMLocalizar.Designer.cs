@@ -84,6 +84,7 @@
             this.Controls.Add(this.LBLBusca);
             this.Name = "FRMLocalizar";
             this.Text = "Localizar";
+            this.Load += new System.EventHandler(this.FRMLocalizar_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DGVDados)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

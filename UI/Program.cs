@@ -16,7 +16,7 @@ namespace PadraoDeProjetoEmCamadas
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FRMPessoa());
+            Application.Run(new frmPrincipal());
         }
     }
 }

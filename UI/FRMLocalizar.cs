@@ -40,5 +40,10 @@ namespace PadraoDeProjetoEmCamadas
             this.modelpessoa.Cpf   = DGVDados.Rows[e.RowIndex].Cells[5].Value.ToString();
             this.Close();
         }
+
+        private void FRMLocalizar_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

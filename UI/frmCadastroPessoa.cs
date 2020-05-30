@@ -1,37 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using MODELO;
+﻿using BLL;
 using DAL;
-using BLL;
+using MODELO;
 using MySql.Data.MySqlClient;
+using System;
+using System.Windows.Forms;
 
 namespace PadraoDeProjetoEmCamadas
 {
-    public partial class FRMPessoa : Form
+    public partial class frmCadastroPessoa : PadraoDeProjetoEmCamadas.frmModeloDeCadastro
     {
-        public FRMPessoa()
+        public frmCadastroPessoa(frmPrincipal f)
         {
             InitializeComponent();
-        }
-
-        private void BTNInserir_Click(object sender, EventArgs e)
-        {
-            alterapropriedades(2);
-        }
-
-        private void FRMPessoa_Load(object sender, EventArgs e)
-        {
-            CB_Sexo.Items.Add("Masculino");
-            CB_Sexo.Items.Add("Feminino");
-            CB_Sexo.Items.Add("Outros");
-            alterapropriedades(1);
+            //f.Font.Size = 30;
+            f.Text = "Menu - Cadastro pessoa";
         }
 
         public void limparCampos()
@@ -44,44 +26,25 @@ namespace PadraoDeProjetoEmCamadas
             CB_Sexo.SelectedItem = null;
         }
 
-        public void alterapropriedades(int op)
+        private void btn_inserir_Click(object sender, EventArgs e)
         {
-            //op = operacao
-            // 1 = Inserir | Buscar
-            // 2 = Inserir | Alterar
-            // 3 = Alterar | Excluir
-            BTN_Inserir.Enabled = false;
-            BTN_Alterar.Enabled = false;
-            BTN_Buscar.Enabled = false;
-            BTN_Deletar.Enabled = false;
-            BTN_Cancelar.Enabled = false;
-            BTN_Salvar.Enabled = false;
-            PN_dados.Enabled = false;
-
-            switch (op)
-            {
-                case 1:
-                    BTN_Inserir.Enabled = true;
-                    BTN_Buscar.Enabled = true;
-                    break;
-                case 2:
-                    PN_dados.Enabled = true;
-                    BTN_Buscar.Enabled = true;
-                    BTN_Cancelar.Enabled = true;
-                    BTN_Salvar.Enabled = true;
-                    break;
-                case 3:
-                    PN_dados.Enabled = true;
-                    BTN_Alterar.Enabled = true;
-                    BTN_Deletar.Enabled = true;
-                    BTN_Cancelar.Enabled = true;
-                    break;
-            } 
+             alterapropriedades(2);
         }
 
-        private void popularcampos(MODELOPassoa p) {
+        private void btn_buscar_Click(object sender, EventArgs e)
+        {
+            FRMLocalizar f = new FRMLocalizar();
+            f.ShowDialog();
 
-            DTPNascimento.Text =  Convert.ToString(p.DataNascimento);
+            popularcampos(f.modelpessoa);
+
+            alterapropriedades(3);
+        }
+
+        private void popularcampos(MODELOPassoa p)
+        {
+
+            DTPNascimento.Text = Convert.ToString(p.DataNascimento);
             TXTNome.Text = p.Nome;
             TXTCPF.Text = p.Cpf;
             TXTEmail.Text = p.Email;
@@ -102,17 +65,7 @@ namespace PadraoDeProjetoEmCamadas
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            FRMLocalizar f = new FRMLocalizar();
-            f.ShowDialog();
-
-            popularcampos(f.modelpessoa);
-
-            alterapropriedades(3);
-        }
-
-        private void BTN_Alterar_Click(object sender, EventArgs e)
+        private void btn_alterar_Click(object sender, EventArgs e)
         {
             try
             {
@@ -167,7 +120,7 @@ namespace PadraoDeProjetoEmCamadas
             }
         }
 
-        private void BTN_Deletar_Click(object sender, EventArgs e)
+        private void btn_deletar_Click(object sender, EventArgs e)
         {
             try
             {
@@ -182,7 +135,7 @@ namespace PadraoDeProjetoEmCamadas
             }
             catch (MySqlException ex)
             {
-              MessageBox.Show("Falha ao excluir erro:" + ex.Message);
+                MessageBox.Show("Falha ao excluir erro:" + ex.Message);
             }
             catch (Exception ex)
             {
@@ -190,7 +143,13 @@ namespace PadraoDeProjetoEmCamadas
             }
         }
 
-        private void BTN_Salvar_Click(object sender, EventArgs e)
+
+        private void btn_cancelar_Click(object sender, EventArgs e)
+        {
+            limparCampos();
+        }
+
+        private void btn_salvar_Click(object sender, EventArgs e)
         {
             try
             {
@@ -245,10 +204,13 @@ namespace PadraoDeProjetoEmCamadas
             }
         }
 
-        private void BTN_Cancelar_Click(object sender, EventArgs e)
+        private void frmCadastroPessoa_Load(object sender, EventArgs e)
         {
-            limparCampos();
-            alterapropriedades(1);
+            CB_Sexo.Items.Add("Masculino");
+            CB_Sexo.Items.Add("Feminino");
+            CB_Sexo.Items.Add("Outros");
+            
+          
         }
     }
 }
