@@ -38,6 +38,13 @@ namespace PadraoDeProjetoEmCamadas
             this.modelpessoa.Sexo  = DGVDados.Rows[e.RowIndex].Cells[3].Value.ToString();
             this.modelpessoa.Email = DGVDados.Rows[e.RowIndex].Cells[4].Value.ToString();
             this.modelpessoa.Cpf   = DGVDados.Rows[e.RowIndex].Cells[5].Value.ToString();
+
+            this.modelpessoa.Foto = null;
+            if (DGVDados.Rows[e.RowIndex].Cells[6].Value != DBNull.Value)
+            {
+                this.modelpessoa.Foto = (byte[])DGVDados.Rows[e.RowIndex].Cells[6].Value;
+            }
+
             this.Close();
         }
 

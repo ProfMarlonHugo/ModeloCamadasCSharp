@@ -9,6 +9,7 @@ namespace PadraoDeProjetoEmCamadas
 {
     public partial class frmCadastroPessoa : PadraoDeProjetoEmCamadas.frmModeloDeCadastro
     {
+        private string fotoPessoa = "";
         public frmCadastroPessoa(frmPrincipal f)
         {
             InitializeComponent();
@@ -24,11 +25,13 @@ namespace PadraoDeProjetoEmCamadas
             TXTNome.Clear();
             DTPNascimento.Text = "";
             CB_Sexo.SelectedItem = null;
+            PB_img.Image = null;
         }
 
         private void btn_inserir_Click(object sender, EventArgs e)
         {
-             alterapropriedades(2);
+            alterapropriedades(2);
+            alterarPropriedadeImagem(1);
         }
 
         private void btn_buscar_Click(object sender, EventArgs e)
@@ -39,30 +42,35 @@ namespace PadraoDeProjetoEmCamadas
             popularcampos(f.modelpessoa);
 
             alterapropriedades(3);
+            alterarPropriedadeImagem(1);
         }
 
         private void popularcampos(MODELOPassoa p)
         {
-
-            DTPNascimento.Text = Convert.ToString(p.DataNascimento);
-            TXTNome.Text = p.Nome;
-            TXTCPF.Text = p.Cpf;
-            TXTEmail.Text = p.Email;
-            TXTId.Text = p.Id.ToString();
-            switch (p.Sexo)
+            if (p != null)
             {
-                case "M":
-                    CB_Sexo.SelectedItem = "Masculino";
-                    break;
-                case "F":
-                    CB_Sexo.SelectedItem = "Feminino";
-                    break;
-                case "O":
-                    CB_Sexo.SelectedItem = "Outro";
-                    break;
+                DTPNascimento.Text = Convert.ToString(p.DataNascimento);
+                TXTNome.Text = p.Nome;
+                TXTCPF.Text = p.Cpf;
+                TXTEmail.Text = p.Email;
+                TXTId.Text = p.Id.ToString();
+                if (p.Foto != null)
+                    PB_img.Image = p.getImagem();
 
+                switch (p.Sexo)
+                {
+                    case "M":
+                        CB_Sexo.SelectedItem = "Masculino";
+                        break;
+                    case "F":
+                        CB_Sexo.SelectedItem = "Feminino";
+                        break;
+                    case "O":
+                        CB_Sexo.SelectedItem = "Outro";
+                        break;
+
+                }
             }
-
         }
 
         private void btn_alterar_Click(object sender, EventArgs e)
@@ -95,6 +103,7 @@ namespace PadraoDeProjetoEmCamadas
 
                 p.Email = TXTEmail.Text;
                 p.Cpf = TXTCPF.Text;
+                p.CarregaImagem(fotoPessoa);
                 p.Id = Convert.ToInt32(TXTId.Text);
 
                 bllpessoa.Alterar(p);
@@ -102,6 +111,7 @@ namespace PadraoDeProjetoEmCamadas
 
                 limparCampos();
                 alterapropriedades(1);
+                alterarPropriedadeImagem(0);
             }
             catch (MySqlException ex)
             {
@@ -132,6 +142,7 @@ namespace PadraoDeProjetoEmCamadas
 
                 limparCampos();
                 alterapropriedades(1);
+                alterarPropriedadeImagem(0);
             }
             catch (MySqlException ex)
             {
@@ -147,6 +158,8 @@ namespace PadraoDeProjetoEmCamadas
         private void btn_cancelar_Click(object sender, EventArgs e)
         {
             limparCampos();
+            alterapropriedades(1);
+            alterarPropriedadeImagem(0);
         }
 
         private void btn_salvar_Click(object sender, EventArgs e)
@@ -179,6 +192,7 @@ namespace PadraoDeProjetoEmCamadas
 
                 p.Email = TXTEmail.Text;
                 p.Cpf = TXTCPF.Text;
+                p.CarregaImagem(fotoPessoa);
 
                 bllpessoa.Incluir(p);
                 TXTId.Text = p.Id.ToString(); ;
@@ -186,6 +200,7 @@ namespace PadraoDeProjetoEmCamadas
 
                 limparCampos();
                 alterapropriedades(1);
+                alterarPropriedadeImagem(0);
             }
             catch (MySqlException ex)
             {
@@ -209,8 +224,59 @@ namespace PadraoDeProjetoEmCamadas
             CB_Sexo.Items.Add("Masculino");
             CB_Sexo.Items.Add("Feminino");
             CB_Sexo.Items.Add("Outros");
-            
-          
+            alterarPropriedadeImagem(0);
         }
+
+        private void alterarPropriedadeImagem(int op)
+        {
+            if(op == 0)
+            {
+                btn_buscar_img.Enabled = false;
+                btn_remover_img.Enabled = false;
+            } else if( op == 1)
+            {
+                btn_buscar_img.Enabled = true;
+                btn_remover_img.Enabled = true;
+            }
+        }
+
+        private void btn_buscar_img_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            op.ShowDialog();
+            if(! string.IsNullOrEmpty(op.FileName))
+            {
+                fotoPessoa = op.FileName;
+                PB_img.Load(fotoPessoa);
+            }
+        }
+
+        private void btn_remover_img_Click(object sender, EventArgs e)
+        {
+            fotoPessoa = "";
+            PB_img.Image = null;
+        }
+
+        private void TXTCPF_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBox t = sender as TextBox;
+            //verificar se a tecla precionada é número
+            //ref = https://web.fe.up.pt/~ee96100/projecto/Tabela%20ascii.htm
+            if (e.KeyChar >= 48 && e.KeyChar <= 57)
+            {
+                // 111.222.333-11
+                t.SelectionStart = t.Text.Length + 1;
+                if (t.Text.Length == 3 || t.Text.Length == 7)
+                    t.Text += ".";
+                else if (t.Text.Length == 11)
+                    t.Text += "-";
+
+                t.SelectionStart = t.Text.Length + 1;
+            }else
+            {
+                e.Handled = true;
+            }
+        }
+
     }
 }

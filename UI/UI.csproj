@@ -82,6 +82,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmCadastroEmpresa.resx">
+      <DependentUpon>frmCadastroEmpresa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCadastroPessoa.resx">
       <DependentUpon>frmCadastroPessoa.cs</DependentUpon>
     </EmbeddedResource>

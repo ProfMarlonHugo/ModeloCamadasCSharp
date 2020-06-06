@@ -40,8 +40,16 @@
             this.LBLEmail = new System.Windows.Forms.Label();
             this.CB_Sexo = new System.Windows.Forms.ComboBox();
             this.LBLCpf = new System.Windows.Forms.Label();
+            this.PN_img = new System.Windows.Forms.Panel();
+            this.PB_img = new System.Windows.Forms.PictureBox();
+            this.lbl_img = new System.Windows.Forms.Label();
+            this.btn_buscar_img = new System.Windows.Forms.Button();
+            this.btn_remover_img = new System.Windows.Forms.Button();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.painel_campos.SuspendLayout();
             this.Painel_botoes.SuspendLayout();
+            this.PN_img.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PB_img)).BeginInit();
             this.SuspendLayout();
             // 
             // painel_campos
@@ -58,6 +66,11 @@
             this.painel_campos.Controls.Add(this.LBLEmail);
             this.painel_campos.Controls.Add(this.CB_Sexo);
             this.painel_campos.Controls.Add(this.LBLCpf);
+            this.painel_campos.Size = new System.Drawing.Size(363, 156);
+            // 
+            // Painel_botoes
+            // 
+            this.Painel_botoes.Size = new System.Drawing.Size(489, 54);
             // 
             // btn_cancelar
             // 
@@ -86,13 +99,16 @@
             // TXTCPF
             // 
             this.TXTCPF.Location = new System.Drawing.Point(242, 95);
+            this.TXTCPF.MaxLength = 14;
             this.TXTCPF.Name = "TXTCPF";
             this.TXTCPF.Size = new System.Drawing.Size(105, 20);
             this.TXTCPF.TabIndex = 20;
+            this.TXTCPF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TXTCPF_KeyPress);
             // 
             // TXTNome
             // 
             this.TXTNome.Location = new System.Drawing.Point(103, 43);
+            this.TXTNome.MaxLength = 100;
             this.TXTNome.Name = "TXTNome";
             this.TXTNome.Size = new System.Drawing.Size(244, 20);
             this.TXTNome.TabIndex = 17;
@@ -115,6 +131,7 @@
             // TXTEmail
             // 
             this.TXTEmail.Location = new System.Drawing.Point(103, 122);
+            this.TXTEmail.MaxLength = 50;
             this.TXTEmail.Name = "TXTEmail";
             this.TXTEmail.Size = new System.Drawing.Size(244, 20);
             this.TXTEmail.TabIndex = 19;
@@ -181,18 +198,90 @@
             this.LBLCpf.TabIndex = 25;
             this.LBLCpf.Text = "CPF";
             // 
+            // PN_img
+            // 
+            this.PN_img.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PN_img.Controls.Add(this.PB_img);
+            this.PN_img.Location = new System.Drawing.Point(372, 30);
+            this.PN_img.Name = "PN_img";
+            this.PN_img.Size = new System.Drawing.Size(121, 109);
+            this.PN_img.TabIndex = 2;
+            // 
+            // PB_img
+            // 
+            this.PB_img.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PB_img.Location = new System.Drawing.Point(0, 0);
+            this.PB_img.Name = "PB_img";
+            this.PB_img.Size = new System.Drawing.Size(119, 107);
+            this.PB_img.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PB_img.TabIndex = 0;
+            this.PB_img.TabStop = false;
+            // 
+            // lbl_img
+            // 
+            this.lbl_img.AutoSize = true;
+            this.lbl_img.Location = new System.Drawing.Point(372, 14);
+            this.lbl_img.Name = "lbl_img";
+            this.lbl_img.Size = new System.Drawing.Size(44, 13);
+            this.lbl_img.TabIndex = 28;
+            this.lbl_img.Text = "Imagem";
+            // 
+            // btn_buscar_img
+            // 
+            this.btn_buscar_img.Location = new System.Drawing.Point(372, 144);
+            this.btn_buscar_img.Name = "btn_buscar_img";
+            this.btn_buscar_img.Size = new System.Drawing.Size(54, 23);
+            this.btn_buscar_img.TabIndex = 29;
+            this.btn_buscar_img.Text = "Buscar";
+            this.btn_buscar_img.UseVisualStyleBackColor = true;
+            this.btn_buscar_img.Click += new System.EventHandler(this.btn_buscar_img_Click);
+            // 
+            // btn_remover_img
+            // 
+            this.btn_remover_img.Location = new System.Drawing.Point(432, 144);
+            this.btn_remover_img.Name = "btn_remover_img";
+            this.btn_remover_img.Size = new System.Drawing.Size(61, 23);
+            this.btn_remover_img.TabIndex = 30;
+            this.btn_remover_img.Text = "Remover";
+            this.btn_remover_img.UseVisualStyleBackColor = true;
+            this.btn_remover_img.Click += new System.EventHandler(this.btn_remover_img_Click);
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(156, 249);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(194, 96);
+            this.richTextBox1.TabIndex = 31;
+            this.richTextBox1.Text = "txt\ntete";
+      
+            // 
             // frmCadastroPessoa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(616, 237);
+            this.ClientSize = new System.Drawing.Size(499, 370);
+            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.btn_remover_img);
+            this.Controls.Add(this.btn_buscar_img);
+            this.Controls.Add(this.lbl_img);
+            this.Controls.Add(this.PN_img);
             this.Name = "frmCadastroPessoa";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de passoa";
             this.Load += new System.EventHandler(this.frmCadastroPessoa_Load);
+            this.Controls.SetChildIndex(this.PN_img, 0);
+            this.Controls.SetChildIndex(this.lbl_img, 0);
+            this.Controls.SetChildIndex(this.btn_buscar_img, 0);
+            this.Controls.SetChildIndex(this.btn_remover_img, 0);
+            this.Controls.SetChildIndex(this.painel_campos, 0);
+            this.Controls.SetChildIndex(this.Painel_botoes, 0);
+            this.Controls.SetChildIndex(this.richTextBox1, 0);
             this.painel_campos.ResumeLayout(false);
             this.painel_campos.PerformLayout();
             this.Painel_botoes.ResumeLayout(false);
+            this.PN_img.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PB_img)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -210,5 +299,11 @@
         private System.Windows.Forms.Label LBLEmail;
         private System.Windows.Forms.ComboBox CB_Sexo;
         private System.Windows.Forms.Label LBLCpf;
+        private System.Windows.Forms.Panel PN_img;
+        private System.Windows.Forms.PictureBox PB_img;
+        private System.Windows.Forms.Label lbl_img;
+        private System.Windows.Forms.Button btn_buscar_img;
+        private System.Windows.Forms.Button btn_remover_img;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }

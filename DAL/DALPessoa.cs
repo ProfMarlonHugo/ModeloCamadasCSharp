@@ -25,14 +25,15 @@ namespace DAL
             {
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = this.conexao.ObjetoConexao;
-                cmd.CommandText = "INSERT INTO Pessoa (id, nome, dataNascimento, sexo, email, cpf)" +
-                    "VALUES (NULL, @nome, @dt, @sexo, @email, @cpf);" +
+                cmd.CommandText = "INSERT INTO Pessoa (id, nome, dataNascimento, sexo, email, cpf, foto)" +
+                    "VALUES (NULL, @nome, @dt, @sexo, @email, @cpf, @foto);" +
                     "SELECT MAX(ID) FROM Pessoa;";
                 cmd.Parameters.AddWithValue("@nome", modelo.Nome);
                 cmd.Parameters.AddWithValue("@dt", modelo.DataNascimento.ToString("yyyy-MM-dd HH:mm:ss"));
                 cmd.Parameters.AddWithValue("@sexo", modelo.Sexo);
                 cmd.Parameters.AddWithValue("@email", modelo.Email);
                 cmd.Parameters.AddWithValue("@cpf", modelo.Cpf);
+                cmd.Parameters.AddWithValue("@foto", modelo.Foto);
 
                 conexao.Conectar();
                 int idInserido = Convert.ToInt32(cmd.ExecuteScalar());
@@ -63,7 +64,8 @@ namespace DAL
                                   " dataNascimento = @dataNascimento," +
                                   " sexo = @sexo," +
                                   " email = @email," +
-                                  " cpf = @cpf"+
+                                  " cpf = @cpf,"+
+                                  " foto = @foto" +
                                   " WHERE "+
                                   " id = @id";
                 string data = modelo.DataNascimento.ToString("yyyy-MM-dd HH:mm:ss");
@@ -72,6 +74,7 @@ namespace DAL
                 cmd.Parameters.AddWithValue("@sexo", modelo.Sexo);
                 cmd.Parameters.AddWithValue("@email", modelo.Email);
                 cmd.Parameters.AddWithValue("@cpf", modelo.Cpf);
+                cmd.Parameters.AddWithValue("@foto", modelo.Foto);
                 cmd.Parameters.AddWithValue("@id", modelo.Id);
 
                 this.conexao.Conectar();
