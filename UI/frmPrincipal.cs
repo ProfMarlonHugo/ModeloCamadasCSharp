@@ -24,5 +24,13 @@ namespace PadraoDeProjetoEmCamadas
             f.Dispose();
             this.Text = "Menu";
         }
+
+        private void empresaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCadastroEmpresa f = new frmCadastroEmpresa();
+            f.ShowDialog();
+            f.Dispose();
+            this.Text = "Menu";
+        }
     }
 }

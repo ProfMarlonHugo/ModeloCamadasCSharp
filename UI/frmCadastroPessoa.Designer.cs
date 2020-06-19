@@ -45,7 +45,6 @@
             this.lbl_img = new System.Windows.Forms.Label();
             this.btn_buscar_img = new System.Windows.Forms.Button();
             this.btn_remover_img = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.painel_campos.SuspendLayout();
             this.Painel_botoes.SuspendLayout();
             this.PN_img.SuspendLayout();
@@ -246,20 +245,10 @@
             this.btn_remover_img.UseVisualStyleBackColor = true;
             this.btn_remover_img.Click += new System.EventHandler(this.btn_remover_img_Click);
             // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(156, 249);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(194, 96);
-            this.richTextBox1.TabIndex = 31;
-            this.richTextBox1.Text = "txt\ntete";
-      
-            // 
             // frmCadastroPessoa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(499, 370);
-            this.Controls.Add(this.richTextBox1);
+            this.ClientSize = new System.Drawing.Size(499, 234);
             this.Controls.Add(this.btn_remover_img);
             this.Controls.Add(this.btn_buscar_img);
             this.Controls.Add(this.lbl_img);
@@ -274,7 +263,6 @@
             this.Controls.SetChildIndex(this.btn_remover_img, 0);
             this.Controls.SetChildIndex(this.painel_campos, 0);
             this.Controls.SetChildIndex(this.Painel_botoes, 0);
-            this.Controls.SetChildIndex(this.richTextBox1, 0);
             this.painel_campos.ResumeLayout(false);
             this.painel_campos.PerformLayout();
             this.Painel_botoes.ResumeLayout(false);
@@ -304,6 +292,5 @@
         private System.Windows.Forms.Label lbl_img;
         private System.Windows.Forms.Button btn_buscar_img;
         private System.Windows.Forms.Button btn_remover_img;
-        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
